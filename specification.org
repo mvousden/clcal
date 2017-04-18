@@ -1,0 +1,56 @@
+* Calendars
+  Calendars are a collection of 'things' that have a time component. These can
+  be events that happen once or many times regularly predictably or
+  unpredictably, deadlines by which something must be complete, or plans for
+  when work is to be started in future, optionally in response to a certain
+  event being completed, or in preparation of a deadline.
+** Examples:
+   - Predictable event: Going to the dentist.
+   - Unpredictable event: Receiving a package.
+   - Deadline: Paper submission deadline.
+   - Plan: When I receive this package, I will write a review of the product.
+   - Plan (2): I will perform this work 10 days before its deadline.
+* Loading calendars
+  By default, no calendar is defined. The default calendar is loaded from the
+  ~/.clcal configuration file, if it exists.
+* Commands
+** Concerning files
+   - 'target $PATH' sets the value for the path in the configuration file.
+   - 'event "Dentist" at 12:30 2017-05-03' creates an event with the name
+     "Dentist" at that time.
+** Concerning events
+*** Examples
+    - 'event "Dentist" note "Don't forget to buy floss!"' adds a note to the
+      event with the name "Dentist". Events can have many notes.
+    - 'event "Party" at 21:40 2018-06-06 note "Graham's House"' combines these
+      commands.
+    - 'event "Dentist" at 12:30 2017-11-03' creates another Dentist event at
+      that time.
+    - 'event "Party" move 22:00' changes the start time of the party event.
+    - 'event "Dentist" move 2017-11-04' prompts asks the user which event to
+      move.
+    - 'event "Party" every 7d' turns the Party event into a repeating event,
+      which happens every 7 days.
+    - 'event "Party" skip' skips the next party event instance.
+    - 'event "Party" unskip' cancels the latest skip.
+    - 'event "Party" note "Somewhere else" then only applies to the upcoming
+      instance.
+    - 'event "Party" INSTANCE-UUID note "Somewhere else" applies the note to a
+      specific instance.
+    - 'event "Party" INSTANCE-UUID note-all "No drinking!" applies the note to
+      the entire repeating event.
+    - 'event "Party" note-del NOTE-UUID deletes the note for a given instance,
+      or for the entire event.
+    - 'event "Dentist" done' marks the event as done.
+    - 'event "Party" delete' deletes the Party event entirely (for if it was
+      created by mistake).
+*** Syntax rules
+    - 'event $NAME action $PROPERTY' is the general syntax.
+    - Events are referred to by name, but are stored with UUIDs that can be
+      used instead. The user can find these by viewing the calendar.
+    - If there are multiple events with the same name, the user is asked which
+      event to apply the action to.
+** Concerning viewing
+*** Examples
+    - 'view' shows the calendar for today, including complete items.
+    - 'view X' shows the calendar for the next X days.
