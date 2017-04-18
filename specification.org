@@ -4,6 +4,64 @@
   unpredictably, deadlines by which something must be complete, or plans for
   when work is to be started in future, optionally in response to a certain
   event being completed, or in preparation of a deadline.
+
+  Calendars are stored using YAML.
+** Examples:
+   - name: Paper due
+     - type: Deadline
+     - when:
+       - time: 0000
+       - date: 2017-07-23
+     - warn: 10d
+     - notes:
+       - <NOTE-UUID>: "Leave extra time for submission!"
+
+   - name: Party
+     - type: Event (single)
+     - uuid: <EVENT-UUID>
+     - owned: false
+     - done: false
+     - when:
+       - time: 2140
+       - date: 2017-06-06
+     - notes:
+       - <NOTE-UUID>: "Graham's House"
+
+   - name: Dentist
+     - type: Event (repeating)
+     - uuid: <EVENT-UUID>
+     - first:
+       - date: 2017-11-03
+     - last:
+       - date: 2017-12-03
+     - every: 10d
+     - notes:
+       - <NOTE-UUID>: "Don't forget to buy floss!"
+     - events:
+       - <SUB-EVENT-UUID>:
+         - done: false
+         - when:
+           - time: 1200
+           - date: 2017-12-03
+         - note: "Final session."
+       - <SUB-EVENT-UUID>:
+         - done: skipped
+         - when:
+           - time: 1200
+           - date: 2017-11-23
+         - note: "Skipped because I feel fine."
+       - <SUB-EVENT-UUID>:
+         - done: true
+         - when:
+           - time: 1300
+           - date: 2017-11-11
+         - note: "Moved early; chipped my tooth!"
+       - <SUB-EVENT-UUID>:
+         - done: true
+         - when:
+           - time: 1200
+           - date: 2017-11-03
+         - note: "First time, was pretty good!"
 ** Examples:
    - Predictable event: Going to the dentist.
    - Unpredictable event: Receiving a package.
